@@ -8,8 +8,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="WOW! League">
-<title>WOW! League – Grade 9</title>
+<meta name="apple-mobile-web-app-title" content="Gold League">
+<title>Gold League – Grade 9</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -200,7 +200,7 @@ tr.top td:first-child{box-shadow:inset -3px 0 0 var(--lime)}
 <body>
 <div class="bgfx" aria-hidden="true"></div>
 <div class="app">
-<header id="hdr"><div class="logo">WOW! <span>League</span></div><div class="sub">دوري اللغة الإنجليزية — الصف التاسع · Starter + Unit 1</div></header>
+<header id="hdr"><div class="logo">GOLD <span>League</span></div><div class="sub">دوري اللغة الإنجليزية — الصف التاسع · Starter + Unit 1</div></header>
 
 <section id="sStart" class="card">
   <h2>سجّل في الدوري</h2>
@@ -228,7 +228,7 @@ tr.top td:first-child{box-shadow:inset -3px 0 0 var(--lime)}
 
 <section id="sGame" class="hide">
   <div class="hud">
-    <div class="board"><div class="tm"><i id="myC"></i><span id="myT">WOW</span></div><div class="sc" id="score">0 – 0</div><div class="tm opp"><span id="oppT">OPP</span></div></div>
+    <div class="board"><div class="tm"><i id="myC"></i><span id="myT">YOU</span></div><div class="sc" id="score">0 – 0</div><div class="tm opp"><span id="oppT">OPP</span></div></div>
     <div class="prog" id="prog"></div>
     <div class="pill">⚡ <b id="bolts">0</b></div>
     <button class="icon" id="mute" aria-label="الصوت">🔊</button>
@@ -412,7 +412,7 @@ function buildWorld(){
   w.style.width=WORLDW+"px"; far.style.width=(WORLDW*0.45+900)+"px";
   var fh='<div class="crowd"></div>'; for(var i=0;i<14;i++){ fh+='<div class="lights" style="left:'+(80+i*260)+'px"></div>'; } far.innerHTML=fh;
   var html='<div class="pitch"></div><div class="ads">';
-  for(var a=0;a<30;a++){ html+='<span>'+["WOW! LEAGUE","ENGLISH 9","PLAY FAIR","LEARN · PLAY · WIN","STARTER + UNIT 1"][a%5]+'</span>'; }
+  for(var a=0;a<30;a++){ html+='<span>'+["GOLD LEAGUE","ENGLISH 9","PLAY FAIR","LEARN · PLAY · WIN","STARTER + UNIT 1"][a%5]+'</span>'; }
   html+='</div>';
   for(var r=0;r<5;r++){
     var m=MATCHES[r], ok=oppKit(r);
