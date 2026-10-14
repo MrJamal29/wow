@@ -3,7 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-<meta name="theme-color" content="#140f33">
+<meta name="theme-color" content="#1a1545">
+<meta name="color-scheme" content="dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="WOW! Escape">
 <title>WOW! Escape – Grade 7</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Baloo+2:wght@600;800&display=swap" rel="stylesheet">
 <style>
@@ -14,8 +19,10 @@
   --acc1:#8b7bff;--acc2:#4fd1c5;--gold:#ffd27a;--ok:#4ade80;--bad:#fb7185;--r:22px;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{background:#1a1545;color-scheme:dark}
 html,body{min-height:100%}
-body{font-family:'Cairo',system-ui,sans-serif;color:var(--txt);background:radial-gradient(1200px 700px at 80% -10%,#3b2a8a 0,transparent 60%),radial-gradient(900px 600px at -10% 110%,#0f5d63 0,transparent 55%),linear-gradient(160deg,var(--bg1),var(--bg2) 55%,var(--bg3));background-attachment:fixed;min-height:100vh;min-height:100dvh;overflow-x:hidden;-webkit-user-select:none;user-select:none}
+body{font-family:'Cairo',system-ui,sans-serif;color:var(--txt);background:#1a1545;min-height:100vh;min-height:100dvh;overflow-x:hidden;-webkit-user-select:none;user-select:none}
+.bgfx{position:fixed;inset:-2px;z-index:0;pointer-events:none;background:radial-gradient(1200px 700px at 80% -10%,#3b2a8a 0,transparent 60%),radial-gradient(900px 600px at -10% 110%,#0f5d63 0,transparent 55%),linear-gradient(160deg,var(--bg1),var(--bg2) 55%,var(--bg3))}
 .orbs{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .orbs i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.45}
 .orbs i:nth-child(1){width:44vmax;height:44vmax;background:#6d5dfc;top:-16vmax;right:-14vmax;animation:o1 24s ease-in-out infinite alternate}
@@ -172,6 +179,7 @@ tr.me td{background:rgba(255,210,122,.16);font-weight:800}
 </style>
 </head>
 <body>
+<div class="bgfx" aria-hidden="true"></div>
 <div class="orbs" aria-hidden="true"><i></i><i></i></div>
 <div class="app">
 <header id="hdr"><div class="logo">WOW! ESCAPE</div><div class="sub">مغامرة الهروب من مسرح <bdi>WOW!</bdi> — الصف السابع · الوحدة التمهيدية والوحدة الأولى</div></header>
