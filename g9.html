@@ -392,7 +392,7 @@ $("nm").onchange=function(){
   call("status",[$("cls").value,nm.value],function(s){
     var left = MAXA - s.used;
     $("att").textContent = left>0 ? ("المحاولات المتبقية: "+left+" من 3"+(s.best?(" · أفضل نتيجة لك: "+s.best):"")) : ("انتهت محاولاتك الثلاث · أفضل نتيجة لك: "+s.best);
-    G_left = left; $("pinBox").classList.toggle("hide", left<=0 || $("cls").value==="تجربة"); gate();
+    G_left = left; $("pinBox").classList.toggle("hide", left<=0); gate();
   },function(){ $("att").textContent="تعذّر الاتصال، حاول مرة أخرى."; });
 };
 function drawKits(){
@@ -405,7 +405,7 @@ function drawKits(){
   });
 }
 var G_left=0;
-function gate(){ var t=$("cls").value==="تجربة"; $("toKit").disabled = !(G_left>0 && (t || /^[0-9]{4}$/.test($("pin").value))); }
+function gate(){ var t=false; $("toKit").disabled = !(G_left>0 && (t || /^[0-9]{4}$/.test($("pin").value))); }
 $("pin").addEventListener("input",function(){ this.value=this.value.replace(/[^0-9]/g,"").slice(0,4); gate(); });
 $("toKit").onclick=function(){ drawKits(); show("sKit"); };
 $("kitBack").onclick=function(){ show("sStart"); };
