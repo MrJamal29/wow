@@ -36,6 +36,8 @@ label{display:block;font-weight:700;margin:14px 0 6px;font-size:13px;color:var(-
 select{width:100%;appearance:none;-webkit-appearance:none;padding:13px 16px 13px 40px;border-radius:12px;border:1px solid var(--stroke);font:inherit;font-size:16px;color:var(--txt);background:rgba(0,0,0,.25) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23c6ff3d' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat left 14px center}
 select:focus{outline:none;border-color:var(--lime)}
 select:disabled{opacity:.45}
+#pin{width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--stroke);font:inherit;font-size:22px;letter-spacing:10px;text-align:center;color:var(--txt);background:rgba(0,0,0,.2)}
+#pin:focus{outline:none;border-color:var(--gold,#ffd27a)}
 select option{background:#10241c;color:#fff}
 .btn{display:block;width:100%;border:0;border-radius:12px;padding:14px;font:inherit;font-weight:900;font-size:17px;cursor:pointer;margin-top:14px;color:#06120d;background:linear-gradient(135deg,var(--lime),#8cf06a 55%,var(--cyan));box-shadow:0 10px 28px rgba(198,255,61,.22);transition:transform .15s,filter .2s}
 .btn:hover{filter:brightness(1.06)}.btn:active{transform:scale(.98)}
@@ -208,6 +210,8 @@ tr.top td:first-child{box-shadow:inset -3px 0 0 var(--lime)}
   <select id="cls"><option value="">— اختر صفك —</option><option>9/5</option><option>9/6</option><option value="تجربة">تجربة المعلم (لا تُحسب)</option></select>
   <label for="nm">الاسم</label>
   <select id="nm" disabled><option value="">— اختر اسمك —</option></select>
+  <div id="pinBox" class="hide"><label for="pin">كلمة المرور (4 أرقام من أستاذك)</label>
+  <input id="pin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" placeholder="••••" dir="ltr"></div>
   <div id="att" class="note"></div>
   <button id="toKit" class="btn" disabled>التالي: اختر قميصك ←</button>
   <button id="toBoard" class="btn sec">📊 جدول الدوري</button>
@@ -275,7 +279,7 @@ tr.top td:first-child{box-shadow:inset -3px 0 0 var(--lime)}
 var BANK = (function(){var s=atob('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'),k='WOW9league',u=new Uint8Array(s.length);for(var i=0;i<s.length;i++)u[i]=s.charCodeAt(i)^k.charCodeAt(i%k.length);return JSON.parse(new TextDecoder().decode(u))})();
 var API = "https://script.google.com/macros/s/AKfycbz_lcdoG1Mjl8d87YQSEP1zdaxNBnsyUpwDbp697AixKdYaJsoJoWsu18_jqNYzylGl/exec";
 var CODE = {"9/5":"95","9/6":"96","تجربة":"t"};
-var PNAMES = {roster:["cls"], status:["cls","n"], start:["cls","n"], finish:["t","s","k","sec","ch"], board:["cls"]};
+var PNAMES = {roster:["cls"], status:["cls","n"], start:["cls","n","pw"], finish:["t","s","k","sec","ch"], board:["cls"]};
 function call(fn, args, ok, bad){
   bad = bad || function(e){console.log(e)};
   var q = "?a=" + fn;
@@ -382,12 +386,13 @@ $("cls").onchange=function(){
   if(ROSTER[c]) fill(); else { $("att").innerHTML='<span class="spin"></span>'; call("roster",[c],function(list){ROSTER[c]=list;$("att").textContent="";fill();},function(){$("att").textContent="تعذّر تحميل الأسماء، حاول مرة أخرى.";}); }
 };
 $("nm").onchange=function(){
+  $("pin").value=""; $("pinBox").classList.add("hide"); G_left=0;
   var nm=$("nm"); $("toKit").disabled=true; $("att").innerHTML='<span class="spin"></span>';
   if(!nm.value){$("att").textContent="";return}
   call("status",[$("cls").value,nm.value],function(s){
     var left = MAXA - s.used;
     $("att").textContent = left>0 ? ("المحاولات المتبقية: "+left+" من 3"+(s.best?(" · أفضل نتيجة لك: "+s.best):"")) : ("انتهت محاولاتك الثلاث · أفضل نتيجة لك: "+s.best);
-    $("toKit").disabled = left<=0;
+    G_left = left; $("pinBox").classList.toggle("hide", left<=0 || $("cls").value==="تجربة"); gate();
   },function(){ $("att").textContent="تعذّر الاتصال، حاول مرة أخرى."; });
 };
 function drawKits(){
@@ -399,6 +404,9 @@ function drawKits(){
     box.appendChild(b);
   });
 }
+var G_left=0;
+function gate(){ var t=$("cls").value==="تجربة"; $("toKit").disabled = !(G_left>0 && (t || /^[0-9]{4}$/.test($("pin").value))); }
+$("pin").addEventListener("input",function(){ this.value=this.value.replace(/[^0-9]/g,"").slice(0,4); gate(); });
 $("toKit").onclick=function(){ drawKits(); show("sKit"); };
 $("kitBack").onclick=function(){ show("sStart"); };
 
@@ -436,9 +444,9 @@ function buildWorld(){
 var G=null, timer=null, raf=0, keys={L:0,R:0};
 $("go").onclick=function(){
   var b=this; b.disabled=true; b.innerHTML='<span class="spin"></span>';
-  call("start",[$("cls").value,$("nm").value],function(r){
+  call("start",[$("cls").value,$("nm").value,$("pin").value],function(r){
     b.disabled=false; b.textContent="انزل إلى الملعب ⚽";
-    if(!r.ok){ show("sStart"); $("att").textContent=r.msg; return; }
+    if(!r.ok){ show("sStart"); $("att").textContent=r.msg; $("pin").value=""; if(r.pin){ $("pinBox").classList.remove("hide"); try{$("pin").focus()}catch(e){} } gate(); return; }
     var qs=[];
     [1,2,3,4,5].forEach(function(m){ shuffle(BANK.filter(function(x){return x.r===m})).slice(0,2).forEach(function(x){qs.push(x)}); });
     show("sGame");
